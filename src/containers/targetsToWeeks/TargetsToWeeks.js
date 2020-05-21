@@ -13,10 +13,7 @@ export const TargetsToWeeks=()=>{
         const parentTarget = elem
         const newTarget= {
             name: text,
-            parentTarget: elem,
-            done: false,
-            important: false,
-            adds:''
+            parentTarget: elem
         }
         
         weeksContext.clickedItem(text,parentTarget,newTarget)

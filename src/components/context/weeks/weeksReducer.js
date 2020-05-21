@@ -38,7 +38,7 @@ const handlers = {
     [PUSHED_ARRAY]:(state,{payload})=>({
         ...state,
         pushedArray: {...payload.pushedArray}
-    })         , 
+    }), 
     [UNMOUNT_UL]:(state,{payload})=>(
         //{...forReduserArray}, forReduserArray - возвращент удаленный элемент, а не оставшиеся
         //{forReduserArray}-Cannot convert undefined or null to object
