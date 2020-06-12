@@ -12,10 +12,11 @@ export const ActualWeekTargets=()=>{
         const clkTarg=e.target.innerText
         byDaysContext.actualTarget(clkTarg)
     }
+    
     return(
 
         <Fragment>
-            <h1 class="display-4">Неделя {byDaysContext.actualWeekName}</h1>
+        <h1 class="display-4">Неделя {byDaysContext.actualWeekName}</h1>
             <p class="lead">все задачи на этой неделе:</p>
             <hr class="my-4"/>
             <ul class="list-group">
@@ -32,6 +33,7 @@ export const ActualWeekTargets=()=>{
                 }
         </ul>
         </Fragment>
+            
        
     )
 }

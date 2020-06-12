@@ -18,7 +18,7 @@ const WeeksByDays=()=>{
 
         //weeksContext.addArray(arrayFromTargets)
     }, [])
-
+    
     return(
         <div className="row">
                <ButtonsTargetsByDays/>

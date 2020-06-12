@@ -5,30 +5,27 @@ import { Content } from './content/targets/Content'
 import DroppTargetsToWeeks from './targetsToWeeks/DroppTargetsToWeeks'
 import { WeeksContext } from '../components/context/weeks/weeksContext'
 import WeeksByDays from './weeksByDays/WeeksByDays'
+import { ShowAllTargets } from './allTargets/allTargets'
+import { ByDaysContext } from '../components/context/weeksByDays/byDaysContext'
+import { TrackingWeek } from './trackingWeek/trackingWeek'
+import { Auth } from './auth/Auth'
 
 export const MainContent = ()=>{
     const targetsContext= useContext(TargetsContext)
     const weeksContext= useContext(WeeksContext)
-   /* const ScreenContent= async ()=>{
-       if(targetsContext.targetsReady){
-       
-                if(targetsContext.readyALllList){
-                    return(<DroppTargetsToWeeks/>)
-                }else{
-                return(<SubTargets/>)
-                }
-        }else{
-        return(<Content/>)
-       }
-   } */
+    const byDaysContext = useContext(ByDaysContext)
+
 
     return(
         <div>
-            {
-                weeksContext.byWeeks? <WeeksByDays/>:
-                    targetsContext.readyALllList?<DroppTargetsToWeeks/>:
-                        targetsContext.targetsReady?<SubTargets/>
-                        : <Content/>
+            { 
+            byDaysContext.trackWeek?<TrackingWeek/>:
+                
+                    byDaysContext.showAllTargetsW? <ShowAllTargets/>:
+                        weeksContext.byWeeks? <WeeksByDays/>:
+                            targetsContext.readyALllList?<DroppTargetsToWeeks/>:
+                                targetsContext.targetsReady?<SubTargets/>
+                                : <Content/>
                   }
         </div>
            

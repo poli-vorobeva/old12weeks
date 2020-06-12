@@ -10,6 +10,10 @@ export const ButtonsTargetsByDays=()=>{
         byDaysContext.actualWeek(actW)
         
 }
+    const showAllWeeks=()=>{
+        console.log('Показать все недели')
+        byDaysContext.showAllWeeks()
+    }   
    
     return(
         <div className="col-4" >
@@ -23,6 +27,7 @@ export const ButtonsTargetsByDays=()=>{
                             />
                    }) 
                 }
+                <Button text= {'Дальше->'} callback={e=>showAllWeeks()}/>
             </div>
         </div>
        

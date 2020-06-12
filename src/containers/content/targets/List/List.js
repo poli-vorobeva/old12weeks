@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TargetsContext } from '../../../components/context/targets/targetsContext'
+import { TargetsContext } from '../../../../components/context/targets/targetsContext'
 
 export const List = ()=>{
     const targetsList = useContext(TargetsContext)

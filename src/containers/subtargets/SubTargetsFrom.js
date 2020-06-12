@@ -2,8 +2,6 @@ import React, { useState, useContext, Fragment } from 'react'
 import { Button } from '../../components/Button'
 import { TargetsContext } from '../../components/context/targets/targetsContext'
 
-//let subtargetsArray={}
-
 export const SubTargetsForm = (text)=>{
     const clText = text.text
     const [value,setValue]= useState('')
@@ -19,8 +17,6 @@ export const SubTargetsForm = (text)=>{
             [value]: false
         });
         setValue('')
-        
-        //console.log(subtargetsInput)
     }
     //клик на кнопку готово---
     const getSubTargetsList=(e)=>{
@@ -53,14 +49,7 @@ export const SubTargetsForm = (text)=>{
                 <Button text='+' type="submit"/>
                 </div>          
             </form>
-            <ul>   
-              {/*  {  subtargetsInput.targets[text.text]!==0? Object.keys(subtargetsInput.targets[text]).map(
-                     el=> <li>el</li>
-                 )
-                 :null
-                 
-                } */}
-                    
+            <ul> 
                     {   
                         Object.keys(subtargetsArray).map(el=>{
                             return<li key={el}>{el}</li>

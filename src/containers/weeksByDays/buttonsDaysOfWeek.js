@@ -38,7 +38,7 @@ const weeksDay= (e)=>{
     byDaysContext.deleteClickedTarget()
     }
 
-    
+     
 return(
         <div>
             {

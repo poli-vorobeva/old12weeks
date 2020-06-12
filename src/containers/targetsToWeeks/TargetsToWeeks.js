@@ -9,7 +9,7 @@ export const TargetsToWeeks=()=>{
     
     const getClickedItem= async(e, elem)=>{
         const text = e.target.innerHTML
-        console.log(JSON.stringify(weeksContext.arrayFromTargets['первая задача'][2]))
+       // console.log(JSON.stringify(weeksContext.arrayFromTargets['первая задача'][2]))
         const parentTarget = elem
         const newTarget= {
             name: text,
