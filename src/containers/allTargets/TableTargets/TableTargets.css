@@ -1,0 +1,20 @@
+.table thead tr th{
+    text-align: center;
+}
+.table thead{
+    background: linear-gradient(90deg,rgb(235, 82, 82) 18.23%,
+    rgb(247, 143, 47) 34.37%, rgb(244, 193, 81) 48.96%,
+    rgb(38, 165, 215) 82.29%)
+}
+
+.table tr{
+    background: linear-gradient(90deg,rgba(235, 82, 82,0.3) 18.23%,
+    rgba(247, 143,47,0.3) 34.37%, rgba(244, 193, 81,0.3) 48.96%,
+    rgba(38, 165, 215,0.3) 82.29%)
+}
+
+.tableUl li{
+    list-style: none;
+    border-radius: 2px;
+    width: 100%;
+}

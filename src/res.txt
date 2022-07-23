@@ -1,0 +1,11 @@
+note
+ //Планы с заметками и ключ
+    const plans= byDaysContext.weeksArray
+    const key= axiosContext.key
+//вносим изменения в существующую запись 
+    await axios.patch(`https://weeks-2ade6.firebaseio.com/targets/${key}.json`, {
+        userPlans: plans
+    })
+    .then((response) => {
+           console.log(response);
+    });

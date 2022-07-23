@@ -1,4 +1,5 @@
-import { SELECT_TERGET, ADD_ARRAY, PUT_INTO_WEEK, CLICKED_WEEK, DELETE_ITEM, NEW_LIST_OF_ITEMS } from "./types"
+import { SELECT_TERGET, ADD_ARRAY, PUT_INTO_WEEK, CLICKED_WEEK,
+     DELETE_ITEM} from "./types"
 import { UNMOUNT_UL, PUSHED_ARRAY, BY_WEEKS} from "../types";
 
 const handlers = {
@@ -40,10 +41,7 @@ const handlers = {
         pushedArray: {...payload.pushedArray}
     }), 
     [UNMOUNT_UL]:(state,{payload})=>(
-        //{...forReduserArray}, forReduserArray - возвращент удаленный элемент, а не оставшиеся
-        //{forReduserArray}-Cannot convert undefined or null to object
-        //{...payload.forReduserArray}- не удаляется вообще задача
-        { ...state,
+      { ...state,
             arrayFromTargets: {...state.pushedArray}
      }), 
     [BY_WEEKS]:(state)=>({...state, byWeeks:true}),

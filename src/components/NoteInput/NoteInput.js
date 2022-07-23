@@ -1,37 +1,35 @@
 import React, { useContext, useState } from 'react'
-import { Button } from './Button'
-import { ByDaysContext } from './context/weeksByDays/byDaysContext'
+import { Button } from '../Button'
+import { ByDaysContext } from '../context/weeksByDays/byDaysContext'
 import axios from 'axios'
+import { AxiosContext } from '../context/axiosContext/axiosContext'
 
 export const NoteInput=()=>{
     const byDaysContext= useContext(ByDaysContext)
+    const axiosContext= useContext(AxiosContext)
     const [value,setValue]= useState('')
-    //console.log('----------Принятый прос'+targetNote)
+  
     const submitNote= async (e)=>{
-        console.log(e.target)
         e.preventDefault()
         const noteText= value
         byDaysContext.allNotesList(noteText)
         byDaysContext.notesInput()
-        try{
-            await axios.post('https://weeks-2ade6.firebaseio.com/targets1.json', 
-                {userPlans:byDaysContext.weeksArray})
-
-            const userNotes= await axios.get('https://weeks-2ade6.firebaseio.com/targets1.json')
-                console.log("с заметками " + userNotes)
+        try{//добавляем новую Учетную запись только если еще она не слеоана, т.е. нет массива с планами, если он есть то
+           //в Note
+                const key= axiosContext.key
+                if(key===undefined){
+                    console.log('создаем запись')
+                    await axios.post('https://weeks-2ade6.firebaseio.com/targets/.json', 
+                    {userId: axiosContext.localId,userPlans:byDaysContext.weeksArray})
+                }
         }catch(e){
             console.log(e)
         }
-        //console.log(byDaysContext.weeksArray)
-
     }
-
     return(
         <form className="formNote" onSubmit={e=>submitNote(e)}>                
             <div className='divNote'>
-                <div>
-                    <p>{value}</p>
-                </div>
+             
                 <div className="inputNote">
                 <input 
                     type="text" 

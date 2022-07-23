@@ -1,35 +1,34 @@
 import React, { useState, useContext, Fragment } from 'react'
 import { Button } from '../../components/Button'
 import { TargetsContext } from '../../components/context/targets/targetsContext'
+import { ListOfSubTargets } from './ListOfSubtargets/ListOfSubTargets'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './SubTargetsForm.css'
 
 export const SubTargetsForm = (text)=>{
     const clText = text.text
     const [value,setValue]= useState('')
     const [subtargetsArray, setSubtargetsArray]= useState({})
     const subtargetsInput = useContext(TargetsContext)
-
     //Сабмит формы
-    const submitHandler=async (event)=>{
+    const submitHandler=(event)=>{
         event.preventDefault()
-
-        setSubtargetsArray({
-            ...subtargetsArray,
-            [value]: false
-        });
-        setValue('')
+        if(value.trim()!==''){
+            setSubtargetsArray({
+                ...subtargetsArray,
+                [value]: false
+            });
+            
+        }setValue('')
+        
     }
     //клик на кнопку готово---
     const getSubTargetsList=(e)=>{
         e.preventDefault()
-        const key = subtargetsInput.clickItem
+        const key = clText
         const att= subtargetsArray
       
         subtargetsInput.pushSubListToTarget(key, att)
-       // setSubtargetsArray({})
-        
-
-        
-    console.log(subtargetsInput.targets)
     }
     
     return(
@@ -49,17 +48,24 @@ export const SubTargetsForm = (text)=>{
                 <Button text='+' type="submit"/>
                 </div>          
             </form>
-            <ul> 
+            <TransitionGroup component={'ul'} className='subtargetsList'> 
                     {   
                         Object.keys(subtargetsArray).map(el=>{
-                            return<li key={el}>{el}</li>
+                            return <CSSTransition
+                            key={el}
+                            classNames={'subtargets'}
+                            timeout={500}
+                            >
+                                        <li>{el}</li>
+                                    </CSSTransition>
                         })
                     }
-            </ul>
+            </TransitionGroup>
             <Button            
-                text ="Готово" 
+                text ="Добавить" 
                 callback={e=>getSubTargetsList(e)}
                 />
+            <ListOfSubTargets text={clText}/>
         </Fragment>
         
 

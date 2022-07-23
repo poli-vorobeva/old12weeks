@@ -19,30 +19,30 @@ export const DayWithTargets=()=>{
         //пн
         let fullEng= ''
             Object.entries(week).map(el=>{
-                if(el[1]==numberStr){
-                    return fullEng=el[0]}
+                if(el[1]===numberStr){
+                    return fullEng=el[0]
+                }
+                return el
             })
         byDaysContext.numberOfDay(numberStr,fullEng)
-        console.log(fullEng)
     }
     const byDaysContext=useContext(ByDaysContext)
     return(//Выводим дни недели, что бы день-количество задач в этот день
         <div>
             {Object.entries(week).map(element=>{
-                        //console.log('1')
-                    return <ul  className="list-group">
+                      
+                    return (
+                    <ul  className="list-group" className="dayWithTargets">
                         {
-                        byDaysContext. weeksArray[byDaysContext.numberOfTrackingWeek].weekDay.map(el=>{
+                        byDaysContext.weeksArray[byDaysContext.numberOfTrackingWeek].weekDay.map(el=>{
                             //выбираем нужный день
-                          //console.log(el.id)
                                 if([el.id]==element[0]&&[el.id]){
-                                        //console.log('попали')
-                                        //console.log(el.targets.lenght)
                                         let count=0
-                                        el.targets.map(t=>{
+                                        if(el.targets!==undefined){
+                                            el.targets.map(t=>{
                                             count= count+1;
-                                            console.log('счетчик задач'+count)
-                                        })
+                                           })
+                                    }
                                         return <li
                                          className="list-group-item d-flex justify-content-between align-items-center"
                                          onClick={(e)=>number(e)}
@@ -51,6 +51,7 @@ export const DayWithTargets=()=>{
                             })
                         }
                     </ul>
+                    )
                     })
                 }
         </div>

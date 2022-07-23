@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import { ByDaysContext } from '../../../components/context/weeksByDays/byDaysContext'
-import { Note } from './note/Note'
-import { NoteInput } from '../../../components/NoteInput'
 import { ListOfDayTargets } from './ListOfDayTargets/ListOfDayTargets'
+import { NoteInput } from '../../../components/NoteInput/NoteInput'
 
 export const TrackingDays=()=>{
     const byDaysContext= useContext(ByDaysContext)
@@ -24,13 +23,13 @@ export const TrackingDays=()=>{
             'Sunday': 'Вс'
             } 
 
-    let dayFull=''//полное название на русском
+    //let dayFull=''//полное название на русском
     let dayFullEng=''
-    Object.entries(day).map(el=>{
+    /* Object.entries(day).map(el=>{
             if(el[0]==byDaysContext.numberOfTrackingDay){
                 dayFull = el[1]
             }
-        })
+        }) */
     Object.entries(week).map(el=>{
         if(el[1]==byDaysContext.numberOfTrackingDay){
             dayFullEng=el[0]
@@ -44,24 +43,28 @@ export const TrackingDays=()=>{
     byDaysContext.weeksArray[byDaysContext.numberOfTrackingWeek].weekDay.map(el=>{
             
         if(el.id == dayFullEng){
-              el.targets.map(t=>{
-                 targetsLenght = targetsLenght + 1
-                    t.done && count++
-                    percents= Math.floor(count/targetsLenght * 100) 
-                } )
+            if(el.targets!==undefined){
+                el.targets.map(t=>{
+                    targetsLenght = targetsLenght + 1
+                       t.done && count++
+                       percents= Math.floor(count/targetsLenght * 100) 
+                   } )
+            }
+              
             } 
-    }) 
-    //console.log(percents) 
-    
+    })
+   
     return(
-        <div className= "col-md-5">
+        <div className= "col-md-4">
             <div>
                 <div>
-                    <h1>{dayFull}</h1>
+                    <h1>Неделя {byDaysContext.numberOfTrackingWeek+1}</h1>
+                    {/* <h1>{dayFull}</h1> */}
+                <h1>{day[week[byDaysContext.nameEngTrackingDay]]}</h1>
                 </div>
                 <ListOfDayTargets dayFullEng={dayFullEng}/>
                 {byDaysContext.divNotes&&
-                    <NoteInput />
+                    <NoteInput/>
                 }
                 <p>Сделано:  {percents} %</p> 
             </div>

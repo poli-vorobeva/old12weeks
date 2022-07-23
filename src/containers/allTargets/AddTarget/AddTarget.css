@@ -1,0 +1,45 @@
+.screenGray{
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.addFormWrapper{
+    width: 600px;
+    height: 300px;
+    background: linear-gradient(to bottom right, 
+    rgb(101, 115, 255), rgb(111, 114, 247), rgb(120, 114, 239), 
+    rgb(130, 113, 231), rgb(139, 112, 223), rgb(149, 111, 215),
+     rgb(158, 111, 208), rgb(168, 110, 200), rgb(177, 109, 192),
+     rgb(187, 108, 184), rgb(196, 108, 176), rgb(206, 107, 168));
+    border: 1px solid white;
+     position: fixed;
+    top: 300px;
+    left: 400px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 10px;
+
+}
+.addFormWrapper input{
+margin-bottom: 10px;
+}
+.weeksCheckbox, .weekDays{ 
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+}
+.weeksCheckbox div, .weekDays div{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+.closeAddNote{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}

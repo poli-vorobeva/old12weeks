@@ -1,26 +1,15 @@
-import React, { useReducer, useContext, useEffect } from 'react'
+import React, { useReducer} from 'react'
 import { WeeksContext } from './weeksContext'
 import weeksReducer from './weeksReducer'
-import { TargetsContext } from '../targets/targetsContext'
 import { SELECT_TERGET, ADD_ARRAY, PUT_INTO_WEEK, DELETE_ITEM, CLICKED_WEEK, NEW_LIST_OF_ITEMS} from './types'
-import { UNMOUNT_UL, UL_TARGET_FOR_DELETE, IS_TARGET_EMPTY, PUSHED_ARRAY, BY_WEEKS } from '../types'
+import { UNMOUNT_UL, PUSHED_ARRAY, BY_WEEKS } from '../types'
 
 export const WeeksState = ({children}) =>{
     const initialState={
         targets: '',
         weeks:[
                 {id:1,
-                weekTarget:[{
-                            name: 'тест1',
-                            parentTarget: 'пав',
-                        },{
-                            name: 'теспипи5',
-                            parentTarget: 'el',
-                        },{
-                            name: 'всампитроьл',
-                            parentTarget: 'el',
-                        }
-                    ],
+                weekTarget:[],
                 weekDay:[ 
                          { id:'Monday',
                              targets:[],
@@ -167,163 +156,6 @@ export const WeeksState = ({children}) =>{
                        {id:'Sunday',
                        targets:[]}
                    ]},
-                {id:7,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]},
-                {id:8,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]},
-                {id:9,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]},
-                {id:10,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]},
-                {id:11,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]},
-                {id:12,
-                weekTarget:[],
-                weekDay:[ 
-                    { id:'Monday',
-                        targets:[],
-                       notes:[]
-                   },
-                       {id:'Tuesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Wednesday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Thursday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Friday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Saturday',
-                       targets:[],
-                       notes:[]},
-                       {id:'Sunday',
-                       targets:[],
-                       notes:[]}
-                   ]}
-            
         ],
         clickedItemText:'',
         pushedWeek:'',
@@ -338,95 +170,60 @@ export const WeeksState = ({children}) =>{
         }
     const [state,dispatch] = useReducer(weeksReducer,initialState)
 
-    const addArray= async (arrayFromTargets)=>{
-        console.log(arrayFromTargets)
-        try{
-            dispatch({
-                type:ADD_ARRAY,
-                payload: {arrayFromTargets}
-            })
-        }catch(e){
-            console.log(e)
-        }
-    }
-    const clickedItem=async (text,parentTarget,newTarget)=>{
-        try{
-            
-            dispatch({
+    const addArray=(arrayFromTargets)=>dispatch({type:ADD_ARRAY,payload: {arrayFromTargets}})
+    
+    const clickedItem=(text,parentTarget,newTarget)=>{
+       dispatch({
                 type: SELECT_TERGET,
                 payload:{
                     text, parentTarget,newTarget
                 }
             })
-        }catch(e){
-            console.log(e)
-        }
     }
-    const clickedWeek = async(weekCl)=>{
-        try{
+    const clickedWeek =(weekCl)=>{
             dispatch({
                 type: CLICKED_WEEK,
                 payload:{
                     text: weekCl
                 }
             })
-        }catch(e){
-            console.log(e)
         }
-    }
 
-    const putIntoWeek=async (weekCl, nTarget)=>{
-       
-        try{
-            dispatch({
+    const putIntoWeek=(weekCl, nTarget)=>{
+       dispatch({
                 type:PUT_INTO_WEEK,
                 payload:{
                     week: weekCl,
                     target: nTarget
                 }
                
-            }) 
-
-         }catch(e){
-             console.log(e)
-         }
+            })
     }
 
-    const deleteItem=async (parentTarget, copyObjectWithout)=>{
-        try{
-            dispatch({
+    const deleteItem=(parentTarget, copyObjectWithout)=>{
+       dispatch({
                 type:DELETE_ITEM,
                 payload:{ 
                     parentTarget, copyObjectWithout
                 }
             }) 
-
-         }catch(e){
-             console.log(e)
-         }
-
     }
     const pushedArrayF=(forReduserArray)=>{
-        console.log(Object.keys(state.arrayFromTargets).length)
         dispatch({
             type: PUSHED_ARRAY,
             payload: {pushedArray:forReduserArray}
         })
     }
     const unmountEmpty= (forReduserArray)=>{
-        
-        //console.log("Объект для подстановки "+{...forReduserArray})
-            dispatch({
+        dispatch({
                 type:UNMOUNT_UL,
                 payload:{ 
                     forReduserArray
                 }
-            }) }
-    const byWeeksF=()=>{
-        dispatch({
-            type:BY_WEEKS
-        })
-    }
+            }) 
+        }
+    const byWeeksF=()=>dispatch({type:BY_WEEKS})
+
     return(
         <WeeksContext.Provider value={{clickedItem, clickedWeek,addArray, putIntoWeek,unmountEmpty, 
             deleteItem,pushedArrayF,byWeeksF,

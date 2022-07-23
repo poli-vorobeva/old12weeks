@@ -4,13 +4,14 @@ import { TargetsContext } from '../../../../components/context/targets/targetsCo
 import { RegisterForm } from '../../../../components/RegisterForm/RegisterForm'
 
 export const Form=()=>{
-    const [value,setValue]= useState('')
+    const [val,setVal]= useState('')
     const targetsContext = useContext(TargetsContext)
 
 const submitHandler=(event)=>{
         event.preventDefault()
-        targetsContext.addTarget(value)
-        setValue('')
+        const value= val.trim()
+        value!==''&& targetsContext.addTarget(value)
+        setVal('')
     }
   
   
@@ -24,14 +25,14 @@ const submitHandler=(event)=>{
                         type="text" 
                         className="form-control"
                         placeholder="Введите название заметки"
-                        value={value}
-                        onChange={e=>setValue(e.target.value) } 
+                        value={val}
+                        onChange={e=>setVal(e.target.value) } 
                         />
                  <Button text='+' type="submit"/>
                 </div>          
         </form>
            {
-            !targetsContext.targetsReady && <Button text ="Список готов" callback={targetsContext.addList}/>
+            !targetsContext.targetsReady && JSON.stringify(targetsContext.targets)[2] && <Button text ="Список готов" callback={targetsContext.addList}/>
            }
          
         </div>

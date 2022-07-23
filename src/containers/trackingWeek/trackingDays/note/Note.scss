@@ -1,0 +1,22 @@
+.Note{
+    margin-top: 70px;
+    margin-left: -50px;
+   
+    button{
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        i{
+            height: 15px;
+            width: 15px;
+        }
+    }
+}
+.pWrapper{
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}

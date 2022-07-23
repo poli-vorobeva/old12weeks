@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext} from 'react'
 import { ByDaysContext } from '../../../../components/context/weeksByDays/byDaysContext'
 
 export const DonePercents=()=>{
@@ -8,25 +8,30 @@ export const DonePercents=()=>{
     let count=0
 
 //общее количество задач
-    byDaysContext. weeksArray[byDaysContext.numberOfTrackingWeek].weekDay.map(el=>{
-                    el.targets.map(t=>{
-                        count= count+1;
+    byDaysContext.weeksArray[byDaysContext.numberOfTrackingWeek].weekDay.map(el=>{
+                    if(el.targets!==undefined){el.targets.map(t=>{
+                        return count= count+1;
                     })
+                    return count
+                }
+                return el
                 })
 
-        console.log(count)
         //получаем нужную неделю- день- таргетс-перебираем таргетс если там дон тру...
     byDaysContext.weeksArray
-                .map(element=>//нед
-                    element.id== byDaysContext.actualWeekName && //если это нужная неделя
-                        element.weekDay.map(el=>//перебираем у нее каждый день
+                .map(element=>{//нед
+                    element.id=== byDaysContext.actualWeekName && //если это нужная неделя
+                        element.weekDay.map(el=>{//перебираем у нее каждый день
                            el.targets.map(e=>{//заходим в его задачи
                                if(e.done){
                                 return doneTargets[e.name]='done'
                                } 
+                               return e
                             })
-                        )
-                    )
+                        return el
+                        })
+                return  element      
+                })
     return(
         <div>
         Сделано {Object.keys(doneTargets).length}/{count}

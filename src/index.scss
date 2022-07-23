@@ -1,4 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
+@import './containers/weeksByDays/TargetByDays.scss';
+@import './containers/trackingWeek/trackingDays/note/Note.scss';
 
 body {
   margin: 0;
@@ -46,14 +48,15 @@ code {
   margin: 0;
   padding: 0;
 }
-.formNote{
+/* .formNote{
   width: 300px;
   height: 200px;
   border: 1px solid rgba(86, 139, 139, 0.5);
   background-color: rgba(103, 165, 165, 0.1);
-}
+} */
 .divNote{
-  height: 100%;
+  padding-top: 30px;
+  //height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;

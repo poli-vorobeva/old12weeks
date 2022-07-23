@@ -1,26 +1,22 @@
-import React, { useReducer, useContext, useEffect } from 'react'
-import { Button } from '../../components/Button'
+import React, { useContext, useEffect } from 'react'
 import { WeeksContext } from '../../components/context/weeks/weeksContext'
 import { ByDaysContext } from '../../components/context/weeksByDays/byDaysContext'
 import { ButtonsTargetsByDays } from './weeksByDaysButtons'
-import { ActualWeekTargets } from './actualWeekTargets'
-import { ButtonsDaysOfWeek } from './buttonsDaysOfWeek'
 import { TargetsByDays } from './TargetsByDays'
-
+import './weeksByDays.css'
 const WeeksByDays=()=>{
     const fromWeeksContext= useContext(WeeksContext)
     const byDaysContext= useContext(ByDaysContext)
 
     useEffect(()=>{
+        //при загрузке страницы передаем массив с данными в новый стт
         const forPush= JSON.parse(JSON.stringify(fromWeeksContext.weeks))
-        // console.log(forPush)    
          byDaysContext.pushWeeksArray(forPush)
 
-        //weeksContext.addArray(arrayFromTargets)
     }, [])
     
     return(
-        <div className="row">
+        <div className="row weeksByDays">
                <ButtonsTargetsByDays/>
                <TargetsByDays/>           
         </div>

@@ -1,0 +1,15 @@
+.Navbar{
+    width: 90vw;
+    height: 8vh;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    background:rgb(127, 60, 148);
+    color: white;
+    padding-top: 10px;
+    border-bottom: 1px solid white;
+}
+.Navbar h1{
+   
+}

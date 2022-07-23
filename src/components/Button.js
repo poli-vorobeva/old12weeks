@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Button =({id,text,key, callback})=>{
+export const Button =({id,text,key, callback,dis,style})=>{
     return(
         
         <button 
@@ -9,6 +9,8 @@ export const Button =({id,text,key, callback})=>{
         type="submit"
         onClick={callback}
         key={key}
+        disabled={dis||false}
+        style={{style}}
         
         
         >{text}

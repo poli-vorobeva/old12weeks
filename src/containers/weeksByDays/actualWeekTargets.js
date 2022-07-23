@@ -7,7 +7,7 @@ export const ActualWeekTargets=()=>{
     //получить вложенное свойство 
     const el= {...byDaysContext.weeksArray[byDaysContext.actualWeekName-1]}
     const e=  {...el.weekTarget}     
-   
+    console.log(el,e)
     const clkTarg=(e)=>{
         const clkTarg=e.target.innerText
         byDaysContext.actualTarget(clkTarg)
@@ -16,18 +16,23 @@ export const ActualWeekTargets=()=>{
     return(
 
         <Fragment>
-        <h1 class="display-4">Неделя {byDaysContext.actualWeekName}</h1>
-            <p class="lead">все задачи на этой неделе:</p>
-            <hr class="my-4"/>
-            <ul class="list-group">
+        <h1 className="display-4 actualWeekWhite">Неделя {byDaysContext.actualWeekName}</h1>
+            <p className="lead actualWeekWhite">все задачи на этой неделе:</p>
+            <hr className="my-4"/>
+            <ul className="list-group">
                 {  
                  Object.keys(e).map(t=>{
-                     console.log(e[t].name)
-                     return (
-                        <li class="list-group-item d-flex justify-content-between align-items-center" key = {e[t].name} onClick={(e)=>clkTarg(e)}>
-                            {e[t].name}
-                        </li>
-                     )
+                    console.log(e[t].name)
+                     if(e[t].name!==undefined){
+
+                        console.log(e[t].name)
+                        return (
+                           <li className="list-group-item d-flex justify-content-between align-items-center actualWeekTargets" key = {e[t].name} onClick={(e)=>clkTarg(e)}>
+                               {e[t].name}
+                           </li>
+                        )
+                     }
+                     return
                 })
                  
                 }

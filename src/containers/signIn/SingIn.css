@@ -1,0 +1,13 @@
+.closeX{
+    position: absolute;
+    right: 10px;
+    
+    color: #fff;
+    font-size: 25px;
+}
+.showSingIn-enter{
+    opacity: 0;
+}
+.showSingIn-enter-active{
+    opacity: 1;
+}

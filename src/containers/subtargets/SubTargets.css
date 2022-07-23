@@ -1,0 +1,42 @@
+.subtargetsStyle{
+    background-color: transparent;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+#buttonReady{
+    margin-top: 20px;
+}
+#SubTargetsFormWrapper{
+    margin-right: 20px;
+}
+.stWr-enter{
+    opacity:0;
+    transform: translateX(-100px);
+}
+.stWr-enter-active{
+    opacity: 0.5;
+    transition: all 200ms;
+    transform: translateX(20px);
+}
+
+.stWr-enter-done{
+    opacity: 1;
+    transition: all 100ms;
+    transform: translateX(0px);
+}
+
+.stWr-exit{
+    opacity:1;
+    transform: translateX(10px);
+}
+.stWr-exit-active{
+    opacity: 0.5;
+    transition: all 200ms;
+    transform: translateX(-20px);
+}
+
+.stWr-exit-done{
+    opacity: 0;
+    transition: all 200ms;
+    transform: translateX(-150px);
+}

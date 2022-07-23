@@ -1,25 +1,37 @@
 import React, { useContext } from 'react'
 import { TargetsContext } from '../../../../components/context/targets/targetsContext'
-
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import './List.css'
 export const List = ()=>{
     const targetsList = useContext(TargetsContext)
     const tList= targetsList.targets
-    targetsList.addListOfTargets(tList)
     return(
-        <ul className="list-group">
-           {
+        
+    <TransitionGroup component="ul" className="list-group">
+           { 
+               
                Object.keys(tList).map(targ=>{
+                
                    return(
-                    <li 
-                    className="list-group-item"
+                    <CSSTransition
                     key={targ}
+                    classNames={'target'}
+                    timeout={1000}
+                    mountOnEnter
                     >
-                         {targ}
-                    </li>
+                        <li 
+                        className="list-group-item"
+                       
+                        >
+                            {targ}
+                        </li>
+                    </CSSTransition>
                     )
                })
            }
             
-        </ul>
+        </TransitionGroup>
+       
+       
     )
 }

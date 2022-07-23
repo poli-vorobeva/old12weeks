@@ -4,27 +4,31 @@ import {Button} from '../../components/Button'
 export const ButtonsDaysOfWeek=()=>{
 
     const byDaysContext = useContext(ByDaysContext)
-const week={
-    'Monday': 'Пн',
-    'Tuesday':'Вт',
-    'Wednesday':'Ср',
-    'Trursday':'Чт',
-    'Friday':'Пт',
-    'Saturday':'Сб',
-    'Sunday': 'Вс'
-}
+    const week={
+        'Monday': 'Пн',
+        'Tuesday':'Вт',
+        'Wednesday':'Ср',
+        'Trursday':'Чт',
+        'Friday':'Пт',
+        'Saturday':'Сб',
+        'Sunday': 'Вс'
+    }
+    const weekArr= Object.keys(week)
+    console.log("/////////",weekArr.indexOf("Monday"))
 
-const weeksDay= (e)=>{
+
+    const weeksDay= (e)=>{
     //ПИХАЕМ ЗАДАЧУ В ДЕНЬ
     const clDayId= e.target.id
-
-    let indexDay= ''//индекс дня в массиве
-        byDaysContext.weeksArray[byDaysContext.actualWeekName].weekDay.forEach(e=>{
-            if(e.id==clDayId){
+    //Monday. по индексу 
+       /*  byDaysContext.weeksArray[byDaysContext.actualWeekName].weekDay.forEach(e=>{
+            //console.log(e)
+            if(e.id===clDayId){
                 return indexDay = byDaysContext.weeksArray[byDaysContext.actualWeekName].weekDay.indexOf(e)
             }
-        })
-
+        }) */
+    
+        //console.log('!!!!Индекс дня',indexDay)    
     //создаем объект, для пихания в день нужной недели
     const objForPut={
         name:byDaysContext.clickedTarget,
@@ -34,19 +38,22 @@ const weeksDay= (e)=>{
     }
     //УДАЛЯЕМ КЛИКНУТУЮ ЗАДАЧУ
     byDaysContext.actualDay(clDayId)
-    byDaysContext.putIntoDay(objForPut, clDayId, indexDay)
+    byDaysContext.putIntoDay(objForPut, clDayId)
     byDaysContext.deleteClickedTarget()
     }
 
      
 return(
-        <div>
+        <div className= "buttonsDaysOfWeek">
             {
-                Object.keys(week).map(el=>{
-                   //console.log(week[el])
-                   return <Button text={week[el]} id={el} key={el} callback={(e)=> weeksDay(e)}/>
-                })
+                Object.keys(week).map(el=><Button 
+                    text={week[el]} 
+                    id={weekArr.indexOf(el)} 
+                    key={el} 
+                    callback={(e)=> weeksDay(e)}
+                    />
+                )
             }
-    </div>
+        </div>
     )
 }

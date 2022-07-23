@@ -1,0 +1,11 @@
+.weeksByDays{
+    color: white;
+    padding-top: 30px;
+}
+.weeksByDays h1, .weeksByDays p{
+    color: white
+
+}
+.buttonsDaysOfWeek{
+    padding-top: 30px;
+}

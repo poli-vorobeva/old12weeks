@@ -8,7 +8,6 @@ import WeeksByDays from './weeksByDays/WeeksByDays'
 import { ShowAllTargets } from './allTargets/allTargets'
 import { ByDaysContext } from '../components/context/weeksByDays/byDaysContext'
 import { TrackingWeek } from './trackingWeek/trackingWeek'
-import { Auth } from './auth/Auth'
 
 export const MainContent = ()=>{
     const targetsContext= useContext(TargetsContext)

@@ -1,15 +1,19 @@
-import React, { useReducer, useContext, useState } from 'react'
+import React, {useContext} from 'react'
 import { WeeksContext } from '../../components/context/weeks/weeksContext'
-import { Button } from '../../components/Button'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './TargetsToWeeks.css'
+import Radium from 'radium'
 
-export const TargetsToWeeks=()=>{
+const TargetsToWeeks=()=>{
     const weeksContext = useContext(WeeksContext)
     
     
     
-    const getClickedItem= async(e, elem)=>{
+    const getClickedItem=(e, elem)=>{
+        e.target.style.backgroundColor="rgba(75, 15, 216, 0.842)"
+        e.target.style.color="white"
+
         const text = e.target.innerHTML
-       // console.log(JSON.stringify(weeksContext.arrayFromTargets['первая задача'][2]))
         const parentTarget = elem
         const newTarget= {
             name: text,
@@ -17,15 +21,14 @@ export const TargetsToWeeks=()=>{
         }
         
         weeksContext.clickedItem(text,parentTarget,newTarget)
-
-     /*    
-        const clickedItemInArray = weeksContext.arrayFromTargets[el][text]
-        const itemsTarget = el
-        weeksContext.clickedItem(text, clickedItemInArray, itemsTarget) */
-        //получаем кликнутый элемент в массиве
        
     }
-   
+    const style={
+        ':hover':{
+            backgroundColor: 'rgba(75, 15, 216, 0.158)',
+            color:'white'
+        }
+    }
      return(
         
          <div className=" weeks row">
@@ -37,27 +40,38 @@ export const TargetsToWeeks=()=>{
                         .map(el=>{
                        if(JSON.stringify(weeksContext.arrayFromTargets[el]) !== '{}'){// если элемент не равен пустому объ
                                 return(
-                                    <div className="card  col-md-2" style={{width: '18rem'}} key = {el}>
+                                    <div className="card  col-md-3" style={{width: '18rem'}} key = {el}>
                                           
                                           
-                                            <div className="card-header">
+                                            <div className="targetsToWeekHeader">
                                                 {el}
                                             </div>
-                                        <ul className="list-group list-group-flush">
+                                        <TransitionGroup component={'ul'} className="list-group list-group-flush">
                                             {Object.keys(weeksContext.arrayFromTargets[el]).map(item=>{
                                                 return(
-                                                <li className="list-group-item" 
+                                                    <CSSTransition
+                                                    timeout={500}
                                                     key={item}
-                                                    onClick={e=>getClickedItem(e, el)}
-                                                    >{item}
-                                                    </li > /* название задачи */)
+                                                    classNames={'itemSubTarget'}
+                                                    >
+                                                        <li  style={style} key={item} className="list-group-item targetsToWeekListItem" 
+                                                        onClick={e=>getClickedItem(e, el)}
+                                                        >
+                                                        <div className='listItemDiv'>
+                                                            {item}
+
+                                                        </div>
+                                                        </li >
+                                                        
+                                                    </CSSTransition> /* название задачи */)
                                                 })
                                             }       
-                                        </ul>
+                                        </TransitionGroup>
                                
                                     </div> 
                                 )
                             }
+                            return
 
                 })
 
@@ -70,6 +84,6 @@ export const TargetsToWeeks=()=>{
     )
 }
 
-
+export default Radium(TargetsToWeeks)
 
         

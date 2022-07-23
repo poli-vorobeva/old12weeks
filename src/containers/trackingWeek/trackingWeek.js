@@ -1,22 +1,20 @@
-import React, { useReducer, useContext, Fragment } from 'react'
-import { ByDaysContext } from '../../components/context/weeksByDays/byDaysContext'
-import { byDaysReducer } from '../../components/context/weeksByDays/byDaysReducer'
+import React, { useContext } from 'react'
 import { ForWeekTargets } from './forWeekTargets/forWeekTargets'
 import { TrackingDays } from './trackingDays/trackingDays'
 import { Note } from './trackingDays/note/Note'
-import { NoteInput } from '../../components/NoteInput'
+import './trackingWeek.css'
+import { ByDaysContext } from '../../components/context/weeksByDays/byDaysContext'
 
 export const TrackingWeek=()=>{
-   const byDaysContext= useContext(ByDaysContext)
-return(
-  <Fragment>
-    <div className="jumbotron jumbotron-fluid row">
-      <ForWeekTargets/>
-      <TrackingDays/>
-      {byDaysContext.allNotes&&<Note/>}
-    </div>
-  
-  </Fragment>
-   
-)
+  const byDaysContext= useContext(ByDaysContext)
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@') 
+  console.log(JSON.stringify(byDaysContext.weeksArray))
+  return(
+      <div className="jumbotron jumbotron-fluid row trackingWeek">
+        <ForWeekTargets/>
+        <TrackingDays/>
+        <Note/>
+      </div>
+    
+  )
 }
